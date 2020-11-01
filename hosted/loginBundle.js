@@ -135,9 +135,6 @@ var setup = function setup(csrf) {
     return false;
   });
   createLoginWindow(csrf); //default view
-
-  console.log(signupButton);
-  console.log(loginButton);
 };
 
 var getToken = function getToken() {

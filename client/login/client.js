@@ -106,9 +106,6 @@ const setup = (csrf) => {
     });
     
     createLoginWindow(csrf); //default view
-    
-    console.log(signupButton);
-    console.log(loginButton);
 };
 
 const getToken = () => {
