@@ -39,6 +39,13 @@ var DomoForm = function DomoForm(props) {
     type: "text",
     name: "age",
     placeholder: "Domo Age"
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "level"
+  }, "Level: "), /*#__PURE__*/React.createElement("input", {
+    id: "domoLevel",
+    type: "text",
+    name: "level",
+    placeholder: "Domo Level"
   }), /*#__PURE__*/React.createElement("input", {
     type: "hidden",
     name: "_csrf",
@@ -60,18 +67,82 @@ var DomoList = function DomoList(props) {
   }
 
   var domoNodes = props.domos.map(function (domo) {
-    return /*#__PURE__*/React.createElement("div", {
-      key: domo._id,
-      className: "domo"
-    }, /*#__PURE__*/React.createElement("img", {
-      src: "/assets/img/domoface.jpeg",
-      alt: "domo face",
-      className: "domoFace"
-    }), /*#__PURE__*/React.createElement("h3", {
-      className: "domoName"
-    }, " Name: ", domo.name, " "), /*#__PURE__*/React.createElement("h3", {
-      className: "domoAge"
-    }, " Age: ", domo.age, " "));
+    var divStyle1 = {
+      backgroundColor: 'springgreen'
+    };
+    var divStyle2 = {
+      backgroundColor: 'gold'
+    };
+    var divStyle3 = {
+      backgroundColor: 'red'
+    }; //        let divStyle4 = {
+    //            backgroundColor: '#55acee',
+    //        }
+
+    if (domo.level <= 25) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: domo._id,
+        className: "domo"
+      }, /*#__PURE__*/React.createElement("img", {
+        src: "/assets/img/domoface.jpeg",
+        alt: "domo face",
+        className: "domoFace"
+      }), /*#__PURE__*/React.createElement("h3", {
+        className: "domoName"
+      }, " Name: ", domo.name, " "), /*#__PURE__*/React.createElement("h3", {
+        className: "domoAge"
+      }, " Age: ", domo.age, " "), /*#__PURE__*/React.createElement("h3", {
+        className: "domoLevel"
+      }, " Level: ", domo.level, " "));
+    } else if (domo.level <= 50) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: domo._id,
+        className: "domo",
+        style: divStyle1
+      }, /*#__PURE__*/React.createElement("img", {
+        src: "/assets/img/domoface.jpeg",
+        alt: "domo face",
+        className: "domoFace"
+      }), /*#__PURE__*/React.createElement("h3", {
+        className: "domoName"
+      }, " Name: ", domo.name, " "), /*#__PURE__*/React.createElement("h3", {
+        className: "domoAge"
+      }, " Age: ", domo.age, " "), /*#__PURE__*/React.createElement("h3", {
+        className: "domoLevel"
+      }, " Level: ", domo.level, " "));
+    } else if (domo.level <= 75) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: domo._id,
+        className: "domo",
+        style: divStyle2
+      }, /*#__PURE__*/React.createElement("img", {
+        src: "/assets/img/domoface.jpeg",
+        alt: "domo face",
+        className: "domoFace"
+      }), /*#__PURE__*/React.createElement("h3", {
+        className: "domoName"
+      }, " Name: ", domo.name, " "), /*#__PURE__*/React.createElement("h3", {
+        className: "domoAge"
+      }, " Age: ", domo.age, " "), /*#__PURE__*/React.createElement("h3", {
+        className: "domoLevel"
+      }, " Level: ", domo.level, " "));
+    } else {
+      return /*#__PURE__*/React.createElement("div", {
+        key: domo._id,
+        className: "domo",
+        style: divStyle3
+      }, /*#__PURE__*/React.createElement("img", {
+        src: "/assets/img/domoface.jpeg",
+        alt: "domo face",
+        className: "domoFace"
+      }), /*#__PURE__*/React.createElement("h3", {
+        className: "domoName"
+      }, " Name: ", domo.name, " "), /*#__PURE__*/React.createElement("h3", {
+        className: "domoAge"
+      }, " Age: ", domo.age, " "), /*#__PURE__*/React.createElement("h3", {
+        className: "domoLevel"
+      }, " Level: ", domo.level, " "));
+    }
   });
   return /*#__PURE__*/React.createElement("div", {
     className: "domoList"
@@ -79,6 +150,15 @@ var DomoList = function DomoList(props) {
 };
 
 var loadDomosFromServer = function loadDomosFromServer() {
+  //    const deleteButton = document.querySelector("#deleteButton");
+  //    
+  //    deleteButton.addEventListener("click", (e) => {
+  //        sendAjax('DELETE', '/deleteDomos', null, (data) => {
+  //            ReactDOM.render(
+  //                <DomoList domos={data.domos} />, document.querySelector("#domos")
+  //            );
+  //        });
+  //    });
   sendAjax('GET', '/getDomos', null, function (data) {
     ReactDOM.render( /*#__PURE__*/React.createElement(DomoList, {
       domos: data.domos
